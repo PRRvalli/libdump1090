@@ -11,7 +11,7 @@ Addition   : file_size(filename)        ||  [line 182]
 '''
 
 
-
+import time
 from ctypes import *
 #from rtlsdr import *
 from time import gmtime
@@ -188,7 +188,12 @@ def file_size(file_path):
         #print "bytes = %f" %(file_info.st_size)
         return file_info.st_size
 
-
+def message_decoder(filename):
+    modes = ModeSDetector()
+    modes.readFromFile("test.bin",file_size("test.bin"))
+    modes.printMessages()
+    del(modes)
+    
 file=open('data/test_data.dat','rb')
 list=file.readline()
 print len(list)
@@ -210,12 +215,13 @@ while start<len(list):
         break
 
     print "%d:Start: %d||End: %d||Size: %fMb" %(c,start,e,file_size('test.bin')/(65536.0*16.0))
-    
+    '''
     modes = ModeSDetector()
     modes.readFromFile("test.bin",file_size("test.bin"))
     modes.printMessages()
     del(modes)
-    
+    '''
+    message_decoder('test.bin')
     start+=4*16*16384
     c+=1
     os.remove('test.bin')

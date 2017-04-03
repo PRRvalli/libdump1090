@@ -38,7 +38,7 @@ while start<len(list):
 
     #print "%d:Start: %d||End: %d||Size: %dMb" %(c,start,e,file_size('test.bin')/(65536.0*16.0))
     
-    os.system("python mode_s.py test.bin")
+    os.system("python mode_sV2.py test.bin")
     start+=4*16*16384
     c+=1
     os.remove('test.bin')
